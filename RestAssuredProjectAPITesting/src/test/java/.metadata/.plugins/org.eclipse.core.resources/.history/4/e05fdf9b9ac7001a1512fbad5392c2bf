@@ -1,0 +1,27 @@
+package dataDrivenTesting;
+
+
+
+public class DataDrivenTest_AddNewEmployees {
+
+	
+	void postNewEmployees()
+	
+	String [][]getEmpData()
+	{
+		String empdata[][] = { { "Tiger","50000","32"},{"Simran", "45000","25"},{"Sara","35000","26"}};
+		
+		return(empdata);
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}

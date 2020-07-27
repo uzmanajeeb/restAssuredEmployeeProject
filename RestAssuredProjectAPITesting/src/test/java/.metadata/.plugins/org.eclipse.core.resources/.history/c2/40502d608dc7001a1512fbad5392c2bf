@@ -1,0 +1,52 @@
+package dataDrivenTesting;
+import org.json.simple.JSONObject;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+
+
+
+public class dataDrivenAddNewEmployee {
+	
+	@Test
+	void postNewEmployee()
+	
+	{
+		RestAssured.baseURI = "	http://dummy.restapiexample.com/api/v1";
+		
+		RequestSpecification httpRequest = RestAssured.given();
+		
+		JSONObject RequestParams = new JSONObject ();
+		
+		RequestParams.put("name", "Smith_2");
+		RequestParams.put("salary", "45000");
+		RequestParams.put("age", "45");
+		
+		httpRequest.header("Content-Type", "application/json");
+		
+		httpRequest.body(RequestParams.toJSONString());
+		
+		Response response=httpRequest.request(Method.POST,"/create");
+		
+		String ResponseBody=response.getBody().asString();
+		
+		Assert.assertEquals(ResponseBody.contains("Smith_2"), true);
+		Assert.assertEquals(ResponseBody.contains("45000"), true);
+		Assert.assertEquals(ResponseBody.contains("45"), true);
+		
+		int statuscode=response.getStatusCode();
+		Assert.assertEquals(statuscode, 200);
+		
+		
+		
+		
+		
+		
+	}
+
+}
